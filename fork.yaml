@@ -1,0 +1,46 @@
+title: "op-reth"
+
+footer: |
+  Fork-diff overview of [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth) and execution-engine of the [OP-stack](https://github.com/ethereum-optimism/optimism).
+
+base:
+  name: paradigmxyz/reth
+  url: https://github.com/paradigmxyz/reth
+  ref: refs/heads/main
+
+fork:
+  name: anton-rs/op-reth
+  url: https://github.com/anton-rs/op-reth
+  ref: refs/heads/clabby/op-reth
+
+def:
+    title: "op-reth"
+    description: |
+      This is an overview of the changes in [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth), part of the [OP-stack](https://github.com/ethereum-optimism/optimism).
+      Similar minimal-diff forks of execution clients for the OP Stack include:
+        - [testinprod-io](https://github.com/testinprod-io)'s [op-erigon](https://github.com/testinprod-io/op-erigon).
+        - [optimism](https://github.com/ethereum-optimism/optimism)'s [op-geth](https://github.com/ethereum-optimism/op-geth).
+    globs:
+      - "hello/world/greeter.go"  # list files of which the patches should be included
+      - "hello/util/*"  # use file globs to include multiple files
+      - "hello/util/*[!_test].go"  # you can ignore things with globs too
+    sub:
+      - title: ""  # titles are optional
+        description: "This fork tests the modifications to `greeter.go` and utils."
+        globs:
+          - "hello/world/greeter.go"
+          - "hello/util/*_test.go"
+      - title: "modifications to hello/printer"
+        description: "The `printer` package prints greetings"
+        globs:
+          - "hello/printer/*"
+      - title: "MOTD"
+        description: "New package that generates a message of the day (MOTD) to add to the greeting"
+        globs:
+          - "motd/*"
+
+# Files that can be ignored globally.
+# These will be listed in a separate grayed-out section
+# and do not count towards the total line count.
+ignore:
+  - "*.sum"
