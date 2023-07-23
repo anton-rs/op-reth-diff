@@ -1,67 +1,24 @@
-# forkdiff
+# op-reth-diff
 
-Forkdiff is a simple CLI tool to diff a git fork and its base,
-structure and enhance it with descriptions based on a `fork.yaml`,
-and output a `index.html` to show the diff.
+Houses the code for an diff between [reth](https://github.com/paradigmxyz/reth) and [op-reth](https://github.com/anton-rs/op-reth).
 
-Usage:
+This repo uses [forkdiff](https://github.com/protolambda/forkdiff) created by [protolambda](https://github.com/protolambda) to generate
+the site. Instructions for creating a site are detailed in the `forkdiff` repository.
 
-```
--repo string
-    path to local git repository (default ".")
--fork string
-    fork page definition (default "fork.yaml")
--out string
-    output (default "index.html")
--upstream-repo string (optional)
-    path to local git repository (default value of -repo)
-```
+## Generating the Diff
 
-The `fork.yaml` defines the page structure, to organize and document the diff of the fork.
+`fork.yaml` contains the page structure configuration for generating the output diff site (`index.html`).
 
-Example:
+To generate the diff site, you first need to have cloned [op-reth](https://github.com/anton-rs/op-reth).
 
-```yaml
-title: "protolambda's Greeter fork"  # Define the HTML page title
-footer: |  # define the footer with markdown
-  [Greeter](https://github.com/protolambda/greeter) fork overview &middot created with [Forkdiff](https://github.com/protolambda/forkdiff)
-base:
-  name: example/greeter
-  url: https://github.com/example/greeter
-  ref: refs/heads/master
-fork:
-  name: protolambda/greeter
-  url: https://github.com/protolambda/greeter
-  ref: refs/heads/optimism-history
-def:
-    title: "Example Fork diff"
-    description: | # description in markdown
-      These are some **really** important `code` modifications in the fork.
-      The original can be found at [`github.com/example/greeter`](https://github.com/example/greeter).
-      And the fork at [`github.com/protolambda/greeter`](https://github.com/protolambda/greeter).
-    globs:
-      - "hello/world/greeter.go"  # list files of which the patches should be included
-      - "hello/util/*"  # use file globs to include multiple files
-      - "hello/util/*[!_test].go"  # you can ignore things with globs too
-    sub:
-      - title: ""  # titles are optional
-        description: "This fork tests the modifications to `greeter.go` and utils."
-        globs:
-          - "hello/world/greeter.go"
-          - "hello/util/*_test.go"
-      - title: "modifications to hello/printer"
-        description: "The `printer` package prints greetings"
-        globs:
-          - "hello/printer/*"
-      - title: "MOTD"
-        description: "New package that generates a message of the day (MOTD) to add to the greeting"
-        globs:
-          - "motd/*"
-# files can be ignored globally, these will be listed in a separate grayed-out section,
-# and do not count towards the total line count.
-ignore:
-  - "*.sum"
-```
+Once this is cloned with a local path relative to this directory of `../op-reth`, you can simply run
+`go run main.go -repo ../op-reth` to generate the diff!
+
+This should output a new `index.html` file that will render the site.
+
+Test it by opening [index.html](./index.html) in your browser! 
+
+Further usage of the cli can be found in the forkdiff repository's [README.md](https://github.com/protolambda/forkdiff#forkdiff).
 
 ## License
 
