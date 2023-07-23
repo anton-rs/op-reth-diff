@@ -1,7 +1,7 @@
 title: "op-reth"
 
 footer: |
-  Fork-diff overview of [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth) and execution-engine of the [OP-stack](https://github.com/ethereum-optimism/optimism).
+  [Fork-diff](https://github.com/protolambda/forkdiff) overview of [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth) and execution-engine of the [OP Stack](https://github.com/ethereum-optimism/optimism).
 
 base:
   name: paradigmxyz/reth
@@ -16,10 +16,14 @@ fork:
 def:
     title: "op-reth"
     description: |
-      This is an overview of the changes in [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth), part of the [OP-stack](https://github.com/ethereum-optimism/optimism).
-      Similar minimal-diff forks of execution clients for the OP Stack include:
-        - [testinprod-io](https://github.com/testinprod-io)'s [op-erigon](https://github.com/testinprod-io/op-erigon).
-        - [optimism](https://github.com/ethereum-optimism/optimism)'s [op-geth](https://github.com/ethereum-optimism/op-geth).
+      This is an overview of the changes in [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth), part of the [OP Stack](https://github.com/ethereum-optimism/optimism).
+      <br />
+      <br />
+      Similar minimal-diff forks of Ethereum Execution Clients for the [OP Stack](https://github.com/ethereum-optimism/optimism) include:
+        <br />
+        - [op-erigon](https://github.com/testinprod-io/op-erigon) built by [testinprod-io](https://github.com/testinprod-io).
+        <br />
+        - [op-geth](https://github.com/ethereum-optimism/op-geth) built by [optimism](https://github.com/ethereum-optimism/optimism).
     globs:
       - "hello/world/greeter.go"  # list files of which the patches should be included
       - "hello/util/*"  # use file globs to include multiple files
