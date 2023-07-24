@@ -1,6 +1,6 @@
 title: "op-reth"
 
-logo: "./anton.png"
+logo: "anton.png"
 
 footer: |
   [Fork-diff](https://github.com/protolambda/forkdiff) overview of [op-reth](https://github.com/anton-rs/op-reth), a fork of [reth](https://github.com/paradigmxyz/reth) and execution-engine of the [OP Stack](https://github.com/ethereum-optimism/optimism).

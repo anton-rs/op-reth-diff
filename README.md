@@ -15,7 +15,8 @@ In order to set the local git ref for a remote branch (for example `clabby/op-re
 within your local `op-reth` repository clone.
 
 Once op-reth has a local path relative to this directory of `../op-reth`, you can simply run
-`go run main.go -repo ../op-reth` to generate the diff!
+`go run main.go -repo ../op-reth` to generate the diff! If your path to `op-reth` is exactly 
+`../op-reth`, you can simply run `make` or `make generate`.
 
 This should output a new `index.html` file that will render the site.
 
