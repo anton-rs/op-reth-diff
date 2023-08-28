@@ -78,7 +78,29 @@ def:
             description: "Adds the disable tx gossip and sequencer endpoint to the network config and implements them in the network transaction manager."
             globs:
               - "crates/net/network/*"
-
+      - title: "Payload Crate"
+        description: "Documents op-reth changes to the payload crate."
+        globs:
+          - "crates/payload/*"
+        sub:
+          - title: "Basic Payload Builder Module"
+            description: |
+              Implements the Optimism Basic Payload Builder.
+              If the `no_tx_pool` argument is passed in the payload attributes,
+              the transaction pool will be ignored and the only transactions
+              included in the payload will be those sent through the attributes.
+              The L1BlockInfo must be parsed by the block builder to calculate the
+              l1 tx cost for deposit transactions.
+              Cumulative block gas computations change here as well depending on the
+              hardforks activated, specifically Regolith and Bedrock.
+              Adds the compute pending block option behind the optimism feature flag.
+              Builds the payload if there is no tx pool enabled and the optimism chain spec is truthy.
+            globs:
+              - "crates/payload/basic/*"
+          - title: "Builder Payload Module"
+            description: "Updates payload builder error variants and payload builder attributes construction."
+            globs:
+              - "crates/payload/builder/*"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
