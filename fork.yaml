@@ -48,14 +48,19 @@ def:
             description: "Adds support for optimism rollup config in the reth node subcommand."
             globs:
               - "bin/reth/src/node/*"
-      - title: "modifications to hello/printer"
-        description: "The `printer` package prints greetings"
+      - title: "Consensus Crate"
+        description: ""
         globs:
-          - "hello/printer/*"
-      - title: "MOTD"
-        description: "New package that generates a message of the day (MOTD) to add to the greeting"
-        globs:
-          - "motd/*"
+          - "crates/consensus/*"
+        sub:
+          - title: "Beacon Head Updates"
+            description: "Allows the beacon consensus engine to update the head."
+            globs:
+              - "crates/consensus/beacon/*"
+          - title: "Consensus Validation Changes"
+            description: "Validates consensus headers behind the optimism feature flag only when the optimism chain spec option is truthy."
+            globs:
+              - "crates/consensus/common/*"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
