@@ -101,6 +101,37 @@ def:
             description: "Updates payload builder error variants and payload builder attributes construction."
             globs:
               - "crates/payload/builder/*"
+      - title: "Primitives Crate"
+        description: "Documents op-reth changes to the primitives crate."
+        globs:
+          - "crates/primitives/*"
+        sub:
+          - title: "Genesis Files"
+            description: "OP-Stack chain genesis files for chain configs."
+            globs:
+              - "crates/primitives/res/genesis/*"
+          - title: "Base Fee Calculation Tests"
+            description: "Optimism base fee computation tests."
+            globs:
+              - "crates/primitives/src/basefee.rs"
+          - title: "Chain Types"
+            description: "Chain Types, IDs and Specs"
+            globs:
+              - "crates/primitives/src/chain/mod.rs"
+              - "crates/primitives/src/chain/spec.rs"
+              - "crates/primitives/src/constants/mod.rs"
+          - title: "Optimism Hardforks"
+            description: "Hardfork support, receipt types, and receipt root calculations."
+            globs:
+              - "crates/primitives/src/hardfork.rs"
+              - "crates/primitives/src/lib.rs"
+              - "crates/primitives/src/proofs.rs"
+              - "crates/primitives/src/receipt.rs"
+          - title: "Optimism Deposit Transaction Type"
+            description: "Supports the optimism deposit transaction type."
+            globs:
+              - "crates/primitives/src/transaction/*"
+
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
