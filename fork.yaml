@@ -65,7 +65,19 @@ def:
         description: "Primarily adds optimism-specific block execution error variants."
         globs:
           - "crates/interfaces/*"
-
+      - title: "Net Crate"
+        description: "Documents op-reth changes to the net crate."
+        globs:
+          - "crates/net/*"
+        sub:
+          - title: "Network API Module"
+            description: "Updates the NetworkInfo to expose a sequencer endpoint function."
+            globs:
+              - "crates/net/network-api/*"
+          - title: "Network Module"
+            description: "Adds the disable tx gossip and sequencer endpoint to the network config and implements them in the network transaction manager."
+            globs:
+              - "crates/net/network/*"
 
 
 # Files that can be ignored globally.
