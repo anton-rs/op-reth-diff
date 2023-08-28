@@ -31,11 +31,23 @@ def:
       - "hello/util/*"  # use file globs to include multiple files
       - "hello/util/*[!_test].go"  # you can ignore things with globs too
     sub:
-      - title: ""  # titles are optional
+      - title: "Reth Binary Changes"
         description: "This fork tests the modifications to `greeter.go` and utils."
         globs:
-          - "hello/world/greeter.go"
-          - "hello/util/*_test.go"
+          - "bin/reth/*"
+        sub:
+          - title: "Rollup Arguments"
+            description: "Type definitions and parameters for rollup configuration"
+            globs:
+              - "bin/reth/src/args/*"
+          - title: "Optimism Payload Builder"
+            description: "Adds support for the optimism payload builder for spawning payload builder service."
+            globs:
+              - "bin/reth/src/cli/*"
+          - title: "Node Subcommand Modifications"
+            description: "Adds support for optimism rollup config in the reth node subcommand."
+            globs:
+              - "bin/reth/src/node/*"
       - title: "modifications to hello/printer"
         description: "The `printer` package prints greetings"
         globs:
