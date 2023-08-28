@@ -32,7 +32,7 @@ def:
       - "hello/util/*[!_test].go"  # you can ignore things with globs too
     sub:
       - title: "Reth Binary Changes"
-        description: "This fork tests the modifications to `greeter.go` and utils."
+        description: "Documents op-reth changes to the reth binary mod."
         globs:
           - "bin/reth/*"
         sub:
@@ -48,14 +48,59 @@ def:
             description: "Adds support for optimism rollup config in the reth node subcommand."
             globs:
               - "bin/reth/src/node/*"
-      - title: "modifications to hello/printer"
-        description: "The `printer` package prints greetings"
+      - title: "Consensus Crate"
+        description: "Documents op-reth changes to the consensus crate."
         globs:
-          - "hello/printer/*"
-      - title: "MOTD"
-        description: "New package that generates a message of the day (MOTD) to add to the greeting"
+          - "crates/consensus/*"
+        sub:
+          - title: "Beacon Head Updates"
+            description: "Allows the beacon consensus engine to update the head."
+            globs:
+              - "crates/consensus/beacon/*"
+          - title: "Consensus Validation Changes"
+            description: "Validates consensus headers behind the optimism feature flag only when the optimism chain spec option is truthy."
+            globs:
+              - "crates/consensus/common/*"
+      - title: "Interfaces Crate"
+        description: "Primarily adds optimism-specific block execution error variants."
         globs:
-          - "motd/*"
+          - "crates/interfaces/*"
+      - title: "Net Crate"
+        description: "Documents op-reth changes to the net crate."
+        globs:
+          - "crates/net/*"
+        sub:
+          - title: "Network API Module"
+            description: "Updates the NetworkInfo to expose a sequencer endpoint function."
+            globs:
+              - "crates/net/network-api/*"
+          - title: "Network Module"
+            description: "Adds the disable tx gossip and sequencer endpoint to the network config and implements them in the network transaction manager."
+            globs:
+              - "crates/net/network/*"
+      - title: "Payload Crate"
+        description: "Documents op-reth changes to the payload crate."
+        globs:
+          - "crates/payload/*"
+        sub:
+          - title: "Basic Payload Builder Module"
+            description: |
+              Implements the Optimism Basic Payload Builder.
+              If the `no_tx_pool` argument is passed in the payload attributes,
+              the transaction pool will be ignored and the only transactions
+              included in the payload will be those sent through the attributes.
+              The L1BlockInfo must be parsed by the block builder to calculate the
+              l1 tx cost for deposit transactions.
+              Cumulative block gas computations change here as well depending on the
+              hardforks activated, specifically Regolith and Bedrock.
+              Adds the compute pending block option behind the optimism feature flag.
+              Builds the payload if there is no tx pool enabled and the optimism chain spec is truthy.
+            globs:
+              - "crates/payload/basic/*"
+          - title: "Builder Payload Module"
+            description: "Updates payload builder error variants and payload builder attributes construction."
+            globs:
+              - "crates/payload/builder/*"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
