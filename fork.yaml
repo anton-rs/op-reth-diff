@@ -32,7 +32,7 @@ def:
       - "hello/util/*[!_test].go"  # you can ignore things with globs too
     sub:
       - title: "Reth Binary Changes"
-        description: "This fork tests the modifications to `greeter.go` and utils."
+        description: "Documents op-reth changes to the reth binary mod."
         globs:
           - "bin/reth/*"
         sub:
@@ -49,7 +49,7 @@ def:
             globs:
               - "bin/reth/src/node/*"
       - title: "Consensus Crate"
-        description: ""
+        description: "Documents op-reth changes to the consensus crate."
         globs:
           - "crates/consensus/*"
         sub:
@@ -61,6 +61,12 @@ def:
             description: "Validates consensus headers behind the optimism feature flag only when the optimism chain spec option is truthy."
             globs:
               - "crates/consensus/common/*"
+      - title: "Interfaces Crate"
+        description: "Primarily adds optimism-specific block execution error variants."
+        globs:
+          - "crates/interfaces/*"
+
+
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
