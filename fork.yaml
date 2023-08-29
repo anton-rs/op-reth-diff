@@ -210,6 +210,40 @@ def:
             description: "Updates the BlockExecutor trait with an `execute_transactions` method."
             globs:
               - "crates/storage/provider/src/traits/*"
+      - title: "Transaction Pool Crate"
+        description: "Documents op-reth changes to the transaction pool crate."
+        globs:
+          - "crates/transaction-pool/**"
+        sub:
+          - title: "L1 Block Info"
+            description: "Adds the requirement that the Client type implements the BlockReaderIdExt trait to allow optimism to read the l1 block info and calculate l1 transaction costs."
+            globs:
+              - "crates/transaction-pool/src/lib.rs"
+          - title: "NoopTransactionPool"
+            description: "Updates the noop transaction pool to prevent deposit transactions from entering the pool."
+            globs:
+              - "crates/transaction-pool/src/noop.rs"
+          - title: "Test Utilities"
+            description: "Test utilities are updated to match on the deposit transaction type"
+            globs:
+              - "crates/transaction-pool/src/test_utils/**"
+          - title: "PoolTransaction"
+            description: "The PoolTransaction trait is updated to expose input and deposit nonce methods."
+            globs:
+              - "crates/transaction-pool/src/traits.rs"
+          - title: "Transaction Validator Updates"
+            description: |
+              Updates the TransactionValidator to error for deposit transactions.
+              When computing the cost of non-deposit transactions, the l1 block info is fetched using the latest block and used to calculate the transaction's L1 cost.
+              Tests are added to validate deposit transactions are not accepted.
+            globs:
+              - "crates/transaction-pool/src/validate/**"
+      - title: "Miscellaneous"
+        description: "Automated or otherwise unimportant file changes."
+        globs:
+          - "Cargo.lock"
+          - "testing/ef-tests/**"
+
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
