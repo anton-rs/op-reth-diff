@@ -196,6 +196,20 @@ def:
               - "crates/rpc/rpc/*"
               - "crates/rpc/rpc/src/eth/**"
               - "crates/rpc/rpc/src/eth/api/**"
+      - title: "Storage Crate"
+        description: "Documents op-reth changes to the storage crate."
+        globs:
+          - "crates/storage/provider/**"
+          - "crates/storage/provider/src/test_utils/**"
+        sub:
+          - title: "Post State"
+            description: "Temporary fix to the receipts root calculation since post regolith a minor bug in op-geth caused the deposit nonce to be skipped in the tx encoding."
+            globs:
+              - "crates/storage/provider/src/post_state/*"
+          - title: "Block Executor Trait"
+            description: "Updates the BlockExecutor trait with an `execute_transactions` method."
+            globs:
+              - "crates/storage/provider/src/traits/*"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
