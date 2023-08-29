@@ -101,15 +101,15 @@ def:
             description: "Updates payload builder error variants and payload builder attributes construction."
             globs:
               - "crates/payload/builder/*"
+      - title: "Genesis Files"
+        description: "OP Stack Chain Genesis Files"
+        globs:
+          - "crates/primitives/res/genesis/*"
       - title: "Primitives Crate"
         description: "Documents op-reth changes to the primitives crate."
         globs:
           - "crates/primitives/*"
         sub:
-          - title: "Genesis Files"
-            description: "OP-Stack chain genesis files for chain configs."
-            globs:
-              - "crates/primitives/res/genesis/*"
           - title: "Base Fee Calculation Tests"
             description: "Optimism base fee computation tests."
             globs:
@@ -163,6 +163,39 @@ def:
               This provides L1 block information used to calculated the L1 cost of L2 transactions.
             globs:
               - "crates/revm/optimism/mod.rs"
+      - title: "RPC Crate"
+        description: "Documents op-reth changes to the rpc crate."
+        globs:
+          - "crates/rpc/**"
+        sub:
+          - title: "RPC Engine API"
+            description: "Enforces that the payload attributes received on a forkchoice update contain a gas limit."
+            globs:
+              - "crates/rpc/rpc-engine-api/*"
+              - "crates/rpc/rpc-engine-api/src/**"
+          - title: "RPC Types Compat"
+            description: "Update reth rpc compatibility layer to translate optimism-specific reth primitive types to rpc types."
+            globs:
+              - "crates/rpc/rpc-types-compat/*"
+              - "crates/rpc/rpc-types-compat/src/transaction/**"
+          - title: "RPC Types"
+            description: |
+              Updates the RPC Types to support optimism feature flag types.
+              Adds transactions, no tx pool, and gas limit fields to the PayloadAttributes.
+              Adds deposit tx source hash, mint value, and system tx fields to the transaction type.
+              Updates the transaction receipt type to include the deposit nonce, l1 fee, l1 fee scalar, l1 gas price, and l1 gas used fields.
+            globs:
+              - "crates/rpc/rpc-types/*"
+              - "crates/rpc/rpc-types/src/eth/engine/*"
+              - "crates/rpc/rpc-types/src/eth/transaction/*"
+          - title: "RPC Support"
+            description: |
+              Supports parsing L1 Block Info and building transaction receipts with the additional optimism fields parsed from the l1 block info.
+              Forwards transactions to the optional sequencer endpoint in the rpc <code>send_raw_transaction</code> method.
+            globs:
+              - "crates/rpc/rpc/*"
+              - "crates/rpc/rpc/src/eth/**"
+              - "crates/rpc/rpc/src/eth/api/**"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
