@@ -131,7 +131,38 @@ def:
             description: "Supports the optimism deposit transaction type."
             globs:
               - "crates/primitives/src/transaction/*"
-
+      - title: "Revm Crate"
+        description: "Documents op-reth changes to the revm crate."
+        globs:
+          - "crates/revm/*"
+        sub:
+          - title: "Revm Primitives"
+            description: "Updates the revm transaction environment for deposit transactions."
+            globs:
+              - "crates/revm/revm-primitives/*"
+          - title: "Executor Changes"
+            description: |
+              Adds contract creation support for the deposit transaction type by setting the tx nonce to the account nonce.
+              Also dispatches transaction execution to the custom optimism handler if the feature flag is toggled.
+            globs:
+              - "crates/revm/src/executor.rs"
+          - title: "Optimism Executor"
+            description: |
+              Implements the <code>BlockExecutor</code> trait on the <code>Executor</code> when the optimism feature flag is toggled.
+              There is a bunch of optimism-specific transaction execution changes here.
+              One is that pre-regolith hardfork, system transactions did not contribute to the block gas consumption.
+              Prior to regolith, deposit transaction gas usage is equal to its gas limit.
+              Post regolith, there are no more system transactions and deposit transactions report their actual gas usage.
+              Failed deposit transactions must still have a receipt (handled by the <code>fail_deposit_tx!</code> macro).
+            globs:
+              - "crates/revm/src/lib.rs"
+              - "crates/revm/src/optimism/optimism.rs"
+          - title: "L1 Block Info"
+            description: |
+              At the start of each L2 block, the L1 Block Info is posted.
+              This provides L1 block information used to calculated the L1 cost of L2 transactions.
+            globs:
+              - "crates/revm/optimism/mod.rs"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
