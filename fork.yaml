@@ -34,7 +34,9 @@ def:
       - title: "Reth Binary Changes"
         description: "Documents op-reth changes to the reth binary mod."
         globs:
-          - "bin/reth/*"
+          - "bin/reth/**"
+          - "bin/reth/src/init.rs"
+          - "bin/reth/src/lib.rs"
         sub:
           - title: "Rollup Arguments"
             description: "Type definitions and parameters for rollup configuration"
@@ -52,32 +54,43 @@ def:
         description: "Documents op-reth changes to the consensus crate."
         globs:
           - "crates/consensus/*"
+          - "crates/consensus/auto-seal/src/lib.rs"
         sub:
           - title: "Beacon Head Updates"
             description: "Allows the beacon consensus engine to update the head."
             globs:
               - "crates/consensus/beacon/*"
+              - "crates/consensus/beacon/src/engine/*"
           - title: "Consensus Validation Changes"
             description: "Validates consensus headers behind the optimism feature flag only when the optimism chain spec option is truthy."
             globs:
               - "crates/consensus/common/*"
+              - "crates/consensus/common/src/*"
       - title: "Interfaces Crate"
         description: "Primarily adds optimism-specific block execution error variants."
         globs:
           - "crates/interfaces/*"
+          - "crates/interfaces/src/*"
+          - "crates/interfaces/src/blockchain_tree/*"
+          - "crates/interfaces/src/test_utils/*"
       - title: "Net Crate"
         description: "Documents op-reth changes to the net crate."
         globs:
           - "crates/net/*"
+          - "crates/net/eth-wire/*"
+          - "crates/net/eth-wire/src/*"
+          - "crates/net/eth-wire/src/types/*"
         sub:
           - title: "Network API Module"
             description: "Updates the NetworkInfo to expose a sequencer endpoint function."
             globs:
               - "crates/net/network-api/*"
+              - "crates/net/network-api/src/*"
           - title: "Network Module"
             description: "Adds the disable tx gossip and sequencer endpoint to the network config and implements them in the network transaction manager."
             globs:
               - "crates/net/network/*"
+              - "crates/net/network/src/*"
       - title: "Payload Crate"
         description: "Documents op-reth changes to the payload crate."
         globs:
@@ -97,10 +110,12 @@ def:
               Builds the payload if there is no tx pool enabled and the optimism chain spec is truthy.
             globs:
               - "crates/payload/basic/*"
+              - "crates/payload/basic/src/*"
           - title: "Builder Payload Module"
             description: "Updates payload builder error variants and payload builder attributes construction."
             globs:
               - "crates/payload/builder/*"
+              - "crates/payload/builder/src/*"
       - title: "Genesis Files"
         description: "OP Stack Chain Genesis Files"
         globs:
@@ -109,6 +124,7 @@ def:
         description: "Documents op-reth changes to the primitives crate."
         globs:
           - "crates/primitives/*"
+          - "crates/primitives/src/serde_helper/*"
         sub:
           - title: "Base Fee Calculation Tests"
             description: "Optimism base fee computation tests."
@@ -124,6 +140,7 @@ def:
             description: "Hardfork support, receipt types, and receipt root calculations."
             globs:
               - "crates/primitives/src/hardfork.rs"
+              - "crates/primitives/src/header.rs"
               - "crates/primitives/src/lib.rs"
               - "crates/primitives/src/proofs.rs"
               - "crates/primitives/src/receipt.rs"
@@ -135,11 +152,13 @@ def:
         description: "Documents op-reth changes to the revm crate."
         globs:
           - "crates/revm/*"
+          - "crates/revm/revm-inspectors/src/tracing/builder/*"
         sub:
           - title: "Revm Primitives"
             description: "Updates the revm transaction environment for deposit transactions."
             globs:
               - "crates/revm/revm-primitives/*"
+              - "crates/revm/revm-primitives/src/*"
           - title: "Executor Changes"
             description: |
               Adds contract creation support for the deposit transaction type by setting the tx nonce to the account nonce.
@@ -156,13 +175,13 @@ def:
               Failed deposit transactions must still have a receipt (handled by the <code>fail_deposit_tx!</code> macro).
             globs:
               - "crates/revm/src/lib.rs"
-              - "crates/revm/src/optimism/optimism.rs"
+              - "crates/revm/src/optimism/executor.rs"
           - title: "L1 Block Info"
             description: |
               At the start of each L2 block, the L1 Block Info is posted.
               This provides L1 block information used to calculated the L1 cost of L2 transactions.
             globs:
-              - "crates/revm/optimism/mod.rs"
+              - "crates/revm/src/optimism/mod.rs"
       - title: "RPC Crate"
         description: "Documents op-reth changes to the rpc crate."
         globs:
@@ -173,6 +192,7 @@ def:
             globs:
               - "crates/rpc/rpc-engine-api/*"
               - "crates/rpc/rpc-engine-api/src/**"
+              - "crates/rpc/rpc-engine-api/tests/it/**"
           - title: "RPC Types Compat"
             description: "Update reth rpc compatibility layer to translate optimism-specific reth primitive types to rpc types."
             globs:
@@ -186,6 +206,7 @@ def:
               Updates the transaction receipt type to include the deposit nonce, l1 fee, l1 fee scalar, l1 gas price, and l1 gas used fields.
             globs:
               - "crates/rpc/rpc-types/*"
+              - "crates/rpc/rpc-types/src/eth/*"
               - "crates/rpc/rpc-types/src/eth/engine/*"
               - "crates/rpc/rpc-types/src/eth/transaction/*"
           - title: "RPC Support"
@@ -243,7 +264,7 @@ def:
         globs:
           - "Cargo.lock"
           - "testing/ef-tests/**"
-
+          - "testing/ef-tests/src/**"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
