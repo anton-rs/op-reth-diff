@@ -263,8 +263,8 @@ def:
         description: "Automated or otherwise unimportant file changes."
         globs:
           - "Cargo.lock"
-          - "testing/ef-tests/**"
-          - "testing/ef-tests/src/**"
+          # The EF Test Cargo.toml is picked up on a strange carriage return diff I believe
+          - "testing/ef-tests/Cargo.toml"
 
 # Files that can be ignored globally.
 # These will be listed in a separate grayed-out section
