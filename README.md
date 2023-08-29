@@ -1,11 +1,11 @@
-# op-reth-diff
+### https://github.com/anton-rs/op-reth-diff/labels/op-reth-diff
 
 Houses the code for an diff between [reth](https://github.com/paradigmxyz/reth) and [op-reth](https://github.com/anton-rs/op-reth).
 
 This repo uses [forkdiff](https://github.com/protolambda/forkdiff) created by [protolambda](https://github.com/protolambda) to generate
 the site. Instructions for creating a site are detailed in the `forkdiff` repository.
 
-## Generating the Diff
+### Generating the Diff
 
 `fork.yaml` contains the page structure configuration for generating the output diff site (`index.html`).
 
@@ -24,6 +24,6 @@ Test it by opening [index.html](./index.html) in your browser!
 
 Further usage of the cli can be found in the forkdiff repository's [README.md](https://github.com/protolambda/forkdiff#forkdiff).
 
-## License
+### License
 
 MIT, see [`LICENSE` file](./LICENSE).
